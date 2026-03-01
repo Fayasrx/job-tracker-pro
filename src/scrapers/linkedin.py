@@ -108,12 +108,31 @@ class LinkedInScraper(BaseScraper):
                 loc_el = card.find(class_=re.compile(r"job-search-card__location"))
                 loc = loc_el.get_text(strip=True) if loc_el else location
 
+                # Find specific LinkedIn Job ID from the card
+                real_job_id = ""
+                urn_el = card.find(attrs={"data-job-id": True}) or card.find(attrs={"data-entity-urn": True})
+                if urn_el:
+                    if urn_el.get("data-job-id"):
+                        real_job_id = urn_el.get("data-job-id")
+                    elif urn_el.get("data-entity-urn"):
+                        # format is typically urn:li:jobPosting:1234567890
+                        parts = urn_el.get("data-entity-urn").split(":")
+                        if len(parts) > 0:
+                            real_job_id = parts[-1]
+
                 # URL
-                link = card.find("a", href=True)
+                link = card.find("a", href=re.compile(r"/jobs/view/|/jobPostings/|/jobs/search")) or card.find("a", href=True)
                 url = link["href"] if link and link.get("href") else ""
-                if url:
+                
+                if real_job_id:
+                    url = f"{self.BASE_URL}/jobs/view/{real_job_id}/"
+                elif url:
                     if not url.startswith("http"):
                         url = f"{self.BASE_URL}{url if url.startswith('/') else '/' + url}"
+                    # Try to parse currentJobId if stuck in a search redirect
+                    match = re.search(r"currentJobId=(\d+)", url)
+                    if match:
+                        url = f"{self.BASE_URL}/jobs/view/{match.group(1)}/"
                 else:
                     url = f"{self.BASE_URL}/jobs/search/?keywords={quote_plus(title)}+{quote_plus(company)}&location={quote_plus(loc)}"
 

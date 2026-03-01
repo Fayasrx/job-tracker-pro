@@ -78,14 +78,25 @@ class IndeedScraper(BaseScraper):
                 salary_el = card.find(class_=re.compile(r"salary|estimated-salary"))
                 salary = salary_el.get_text(strip=True) if salary_el else ""
 
+                # Extract real Job ID directly from the card
+                real_job_id = ""
+                if card.get("data-jk"):
+                    real_job_id = card.get("data-jk")
+                elif card.find(attrs={"data-jk": True}):
+                    real_job_id = card.find(attrs={"data-jk": True}).get("data-jk")
+
                 link = card.find("a", href=re.compile(r"/rc/clk|/viewjob"))
                 url = ""
-                if link:
+                
+                if real_job_id:
+                    url = f"{self.BASE_URL}/viewjob?jk={real_job_id}"
+                elif link:
                     href = link.get("href", "")
                     if href.startswith("http"):
                         url = href
                     else:
                         url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
+                
                 if not url:
                     url = f"{self.BASE_URL}/jobs?q={quote_plus(title)}+{quote_plus(company)}&l={quote_plus(loc)}"
 
