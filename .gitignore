@@ -23,10 +23,24 @@ logs/
 # Environment secrets — NEVER commit the real .env
 .env
 
-# Node
+# Node — root-level bundled node (not needed in git)
+node_modules/
+node.exe
+node.exe.*
+*.cmd
+*.ps1
+*.bat
+npm
+npx
+corepack
+nodevars*
+package-lock.json
+
+# Frontend build artifacts
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/
+frontend/package-lock.json
 
 # IDE
 .vscode/
