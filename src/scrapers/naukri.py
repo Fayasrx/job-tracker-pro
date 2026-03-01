@@ -87,16 +87,27 @@ class NaukriScraper(BaseScraper):
 
                 link = title_el if title_el and title_el.get("href") else card.find("a", href=True)
                 url = ""
-                if link:
+                
+                # Naukri job ID
+                real_job_id = card.get("data-job-id") or ""
+                if not real_job_id and link and link.get("href"):
+                    match = re.search(r"-(\d{6,})", link.get("href"))
+                    if match:
+                        real_job_id = match.group(1)
+
+                if real_job_id:
+                    role_slug = quote_plus(title.lower().replace(" ", "-").replace("/", ""))
+                    url = f"{self.BASE_URL}/job-listings-{role_slug}-{real_job_id}"
+                elif link:
                     href = link.get("href", "")
                     if href.startswith("http"):
                         url = href
                     elif href:
                         url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
                 
-                if not url or url == f"{self.BASE_URL}/":
-                    role_slug = quote_plus(title.lower().replace(" ", "-"))
-                    loc_slug = quote_plus(loc.lower().replace(" ", "-"))
+                if not url or url == f"{self.BASE_URL}/" or url.endswith("/jobs/"):
+                    role_slug = quote_plus(title.lower().replace(" ", "-") or "jobs")
+                    loc_slug = quote_plus(loc.lower().replace(" ", "-") or "india")
                     url = f"{self.BASE_URL}/{role_slug}-jobs-in-{loc_slug}"
 
                 # Skills

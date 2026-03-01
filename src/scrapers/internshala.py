@@ -81,16 +81,18 @@ class InternshalaScraper(BaseScraper):
                 stipend_el = card.find(class_=re.compile(r"stipend|salary"))
                 stipend = stipend_el.get_text(strip=True) if stipend_el else ""
 
-                link = card.find("a", href=True)
+                link = card.find("a", class_=re.compile(r"view_detail_button")) or card.find("a", href=re.compile(r"/job/|/internship/")) or card.find("a", href=True)
                 url = ""
+                
                 if link:
                     href = link.get("href", "")
                     if href.startswith("http"):
                         url = href
                     elif href:
                         url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
-                if not url:
-                    role_slug = quote_plus(title.lower().replace(" ", "-"))
+                
+                if not url or url == f"{self.BASE_URL}/" or url.endswith("/jobs/"):
+                    role_slug = quote_plus(title.lower().replace(" ", "-") or "internship")
                     url = f"{self.BASE_URL}/internships/{role_slug}-internship"
 
                 job_type = "Internship" if listing_type == "internship" else "Full-time"
