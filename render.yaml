@@ -27,3 +27,23 @@ services:
         value: Al Mahaboob Phyas A
       - key: USER_EMAIL
         value: mahaboobphyas.22ad@kct.ac.in
+      - key: INDEED_EMAIL
+        value: fayaswork19@gmail.com
+      - key: INDEED_PASSWORD
+        sync: false
+      - key: GLASSDOOR_EMAIL
+        value: fayaswork19@gmail.com
+      - key: GLASSDOOR_PASSWORD
+        sync: false
+      - key: LINKEDIN_EMAIL
+        sync: false
+      - key: LINKEDIN_PASSWORD
+        sync: false
+      - key: NAUKRI_EMAIL
+        sync: false
+      - key: NAUKRI_PASSWORD
+        sync: false
+      - key: INTERNSHALA_EMAIL
+        sync: false
+      - key: INTERNSHALA_PASSWORD
+        sync: false

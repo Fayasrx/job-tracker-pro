@@ -89,4 +89,18 @@ def get_settings():
         "job_roles": settings.JOB_ROLES,
         "job_locations": settings.JOB_LOCATIONS,
         "experience_level": settings.EXPERIENCE_LEVEL,
+        "platform_credentials": {
+            "indeed": bool(settings.INDEED_EMAIL and settings.INDEED_PASSWORD),
+            "glassdoor": bool(settings.GLASSDOOR_EMAIL and settings.GLASSDOOR_PASSWORD),
+            "linkedin": bool(settings.LINKEDIN_EMAIL and settings.LINKEDIN_PASSWORD),
+            "naukri": bool(settings.NAUKRI_EMAIL and settings.NAUKRI_PASSWORD),
+            "internshala": bool(settings.INTERNSHALA_EMAIL and settings.INTERNSHALA_PASSWORD),
+        },
+        "platform_emails": {
+            "indeed": settings.INDEED_EMAIL,
+            "glassdoor": settings.GLASSDOOR_EMAIL,
+            "linkedin": settings.LINKEDIN_EMAIL,
+            "naukri": settings.NAUKRI_EMAIL,
+            "internshala": settings.INTERNSHALA_EMAIL,
+        },
     }

@@ -56,5 +56,17 @@ class BackendConfig:
     USER_NAME: str = os.getenv("USER_NAME", "")
     USER_EMAIL: str = os.getenv("USER_EMAIL", "")
 
+    # Platform credentials (for auto-apply / scraping)
+    INDEED_EMAIL: str = os.getenv("INDEED_EMAIL", "")
+    INDEED_PASSWORD: str = os.getenv("INDEED_PASSWORD", "")
+    GLASSDOOR_EMAIL: str = os.getenv("GLASSDOOR_EMAIL", "")
+    GLASSDOOR_PASSWORD: str = os.getenv("GLASSDOOR_PASSWORD", "")
+    LINKEDIN_EMAIL: str = os.getenv("LINKEDIN_EMAIL", "")
+    LINKEDIN_PASSWORD: str = os.getenv("LINKEDIN_PASSWORD", "")
+    NAUKRI_EMAIL: str = os.getenv("NAUKRI_EMAIL", "")
+    NAUKRI_PASSWORD: str = os.getenv("NAUKRI_PASSWORD", "")
+    INTERNSHALA_EMAIL: str = os.getenv("INTERNSHALA_EMAIL", "")
+    INTERNSHALA_PASSWORD: str = os.getenv("INTERNSHALA_PASSWORD", "")
+
 
 settings = BackendConfig()
