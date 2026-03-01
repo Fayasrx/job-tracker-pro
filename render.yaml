@@ -9,8 +9,6 @@ services:
     envVars:
       - key: GEMINI_API_KEY
         sync: false
-      - key: DATABASE_URL
-        value: sqlite:////data/job_tracker.db
       - key: SECRET_KEY
         generateValue: true
       - key: CORS_ORIGINS
@@ -29,7 +27,3 @@ services:
         value: Al Mahaboob Phyas A
       - key: USER_EMAIL
         value: mahaboobphyas.22ad@kct.ac.in
-    disk:
-      name: job-tracker-data
-      mountPath: /data
-      sizeGB: 1
