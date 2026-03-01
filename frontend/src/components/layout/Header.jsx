@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { Bell, Search, Sun, Moon, RefreshCw, LogOut } from 'lucide-react'
 import { useNotificationStore } from '../../store/notificationStore'
 import { useAppStore } from '../../store/appStore'
