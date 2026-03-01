@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
-import { Bell, Search, Sun, Moon, RefreshCw } from 'lucide-react'
+import { Bell, Search, Sun, Moon, RefreshCw, LogOut } from 'lucide-react'
 import { useNotificationStore } from '../../store/notificationStore'
 import { useAppStore } from '../../store/appStore'
 import { getNotifications, markAllRead } from '../../api/notifications'
@@ -57,6 +56,11 @@ export default function Header({ title }) {
     const typeIcon = (type) => {
         const m = { new_jobs: '🆕', high_match: '🎯', daily_digest: '📊', follow_up: '⏰', company_update: '🔔' }
         return m[type] || '🔔'
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem('job_tracker_pin')
+        window.location.href = '/login'
     }
 
     return (
@@ -126,6 +130,15 @@ export default function Header({ title }) {
                     </div>
                 )}
             </div>
+
+            {/* Logout */}
+            <button
+                onClick={handleLogout}
+                className="btn-ghost p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10"
+                title="Lock App"
+            >
+                <LogOut className="w-5 h-5" />
+            </button>
         </header>
     )
 }

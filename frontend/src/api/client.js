@@ -10,11 +10,27 @@ const api = axios.create({
     headers: { 'Content-Type': 'application/json' },
 })
 
+// Request interceptor to attach API key
+api.interceptors.request.use((config) => {
+    const pin = localStorage.getItem('job_tracker_pin')
+    if (pin) {
+        config.headers['X-API-Key'] = pin
+    }
+    return config
+})
+
 // Response interceptor for error handling
 api.interceptors.response.use(
     (res) => res.data,
     (err) => {
         const msg = err.response?.data?.detail || err.message || 'Something went wrong'
+
+        // Handle 401 Unauthorized globally by redirecting to login
+        if (err.response?.status === 401) {
+            localStorage.removeItem('job_tracker_pin')
+            window.location.href = '/login'
+        }
+
         return Promise.reject(new Error(msg))
     }
 )

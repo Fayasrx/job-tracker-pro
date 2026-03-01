@@ -5,7 +5,8 @@ FastAPI application entry point for Job Tracker Pro.
 import sys
 from pathlib import Path
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 # Ensure root dir is importable (for src/ modules)
@@ -17,6 +18,7 @@ from backend.core.config import settings
 from backend.core.database import init_db, SessionLocal
 from backend.core.scheduler import start_scheduler, stop_scheduler
 from backend.core.seeder import seed_mock_data
+from backend.core.security import verify_api_key
 
 # Routes
 from backend.api.routes.jobs import router as jobs_router
@@ -59,13 +61,15 @@ app.add_middleware(
 )
 
 API_PREFIX = "/api"
-app.include_router(jobs_router, prefix=API_PREFIX)
-app.include_router(apps_router, prefix=API_PREFIX)
-app.include_router(notifs_router, prefix=API_PREFIX)
-app.include_router(companies_router, prefix=API_PREFIX)
-app.include_router(profile_router, prefix=API_PREFIX)
-app.include_router(cover_letters_router, prefix=API_PREFIX)
-app.include_router(analytics_router, prefix=API_PREFIX)
+api_dependencies = [Depends(verify_api_key)]
+
+app.include_router(jobs_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(apps_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(notifs_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(companies_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(profile_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(cover_letters_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(analytics_router, prefix=API_PREFIX, dependencies=api_dependencies)
 
 # WebSocket (no /api prefix)
 app.include_router(ws_router)

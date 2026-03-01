@@ -23,11 +23,19 @@ class BackendConfig:
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", f"sqlite:///{ROOT_DIR}/data/job_tracker.db")
+    @property
+    def DATABASE_URL(self) -> str:
+        url = os.getenv("DATABASE_URL", f"sqlite:///{ROOT_DIR}/data/job_tracker.db")
+        # On Render: if /data not mounted, fall back to project-relative path
+        if url == "sqlite:////data/job_tracker.db":
+            url = f"sqlite:///{ROOT_DIR}/data/job_tracker.db"
+        return url
 
     # Server
     BACKEND_PORT: int = int(os.getenv("BACKEND_PORT", "8000"))
     SECRET_KEY: str = os.getenv("SECRET_KEY", "change-me-in-production")
+    APP_SECRET_PIN: str = os.getenv("APP_SECRET_PIN", "0000")  # Default PIN for local dev
+
     @property
     def CORS_ORIGINS(self) -> list[str]:
         """Always include localhost; also read from env for production (e.g. Vercel URL)."""
