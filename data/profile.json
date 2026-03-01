@@ -1,0 +1,118 @@
+{
+  "name": "Al Mahaboob Phyas A",
+  "email": "mahaboobphyas.22ad@kct.ac.in",
+  "phone": "9345170341",
+  "location": "Coimbatore, Tamil Nadu",
+  "linkedin": "https://www.linkedin.com/in/al-mahaboob-phyas-3b490a256",
+  "github": "https://github.com/Fayasrx",
+
+  "summary": "AI/ML and Generative AI engineer with hands-on experience in deep learning, LLM fine-tuning, and applied machine learning. IBM AI Engineering certified professional skilled in building intelligent systems using Hugging Face, PyTorch, TensorFlow, and deploying LLMs locally via Ollama. Experienced in end-to-end ML pipelines, RAG-based applications with LangChain, and QA automation.",
+
+  "education": {
+    "degree": "B.Tech in Artificial Intelligence & Data Science",
+    "college": "Kumaraguru College of Technology",
+    "cgpa": "7.68",
+    "year": "2022-2026",
+    "12th": {
+      "school": "Veveaham Higher Secondary School",
+      "stream": "Computer Science & Maths",
+      "percentage": "91.5%",
+      "year": "2021-2022"
+    }
+  },
+
+  "skills": {
+    "languages": ["Python", "C++", "SQL"],
+    "ml_dl": ["Supervised Learning", "Unsupervised Learning", "XGBoost", "LightGBM", "NLP", "CNNs", "Transfer Learning", "Sentiment Analysis"],
+    "generative_ai": ["Hugging Face Transformers", "Ollama", "LLaMA2", "Mistral", "GPT", "BERT", "Prompt Engineering", "Fine-tuning", "RAG", "LangChain"],
+    "frameworks": ["PyTorch", "TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
+    "web_apis": ["Flask", "REST APIs", "Streamlit", "Dash", "Plotly", "React.js", "Vite", "Tailwind CSS"],
+    "testing_qa": ["Playwright", "UI Test Automation", "Page Object Model", "End-to-End Testing"],
+    "hardware_iot": ["Raspberry Pi", "NodeMCU ESP8266", "NEMA 17 Stepper Motors", "DHT11 Sensors"],
+    "tools": ["Git", "Linux", "Kali Linux", "Wireshark", "Nmap"]
+  },
+
+  "experience": [
+    {
+      "title": "QA Automation Engineer Intern",
+      "company": "Stats Perform",
+      "location": "Remote / On-site",
+      "period": "Jan 2025 - Present",
+      "highlights": [
+        "Engineered 50+ end-to-end UI test cases using Playwright with Python",
+        "Architected Page Object Model (POM) framework for 3+ application modules",
+        "Achieved 85% automated test coverage, catching 15+ critical UI/UX defects"
+      ]
+    },
+    {
+      "title": "Innovation Engineer Trainee",
+      "company": "Forge Innovation & Ventures",
+      "period": "2024",
+      "highlights": [
+        "Spearheaded 3 innovation prototypes integrating Generative AI",
+        "Contributed to solution design for emerging AI-driven product concepts"
+      ]
+    },
+    {
+      "title": "Virtual Data Science Intern",
+      "company": "Codsoft",
+      "location": "Remote",
+      "period": "2024",
+      "highlights": [
+        "Trained and optimized 4 ML models achieving up to 92% accuracy",
+        "Performed EDA on 10K+ records using Pandas, Matplotlib, Seaborn"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Multi-Modal Phishing Detection System",
+      "tech": ["Python", "Scikit-learn", "XGBoost", "Flask", "REST API"],
+      "description": "AI-powered phishing detector with ensemble ML achieving 97.1% accuracy, deployed via REST API & Chrome extension"
+    },
+    {
+      "name": "Sentiment Analysis - Hugging Face",
+      "tech": ["Hugging Face", "BERT", "Flask", "Python"],
+      "description": "Fine-tuned BERT model on 25K+ movie reviews for sentiment classification with Flask web app"
+    },
+    {
+      "name": "LLM Chatbot Assistant",
+      "tech": ["Hugging Face", "Ollama", "LLaMA2", "Mistral"],
+      "description": "Custom chatbot with domain-specific prompt tuning, benchmarked LLaMA2 vs Mistral"
+    },
+    {
+      "name": "Delta Robot - Pick & Place Automation",
+      "tech": ["Python", "Raspberry Pi", "I2C", "Serial Comm"],
+      "description": "High-speed industrial robot with real-time control via Raspberry Pi"
+    },
+    {
+      "name": "GenAI App with RAG & LangChain",
+      "tech": ["LangChain", "RAG", "Python", "Hugging Face"],
+      "description": "Retrieval-augmented generation app for context-aware document Q&A"
+    },
+    {
+      "name": "VENOM Marine Conservation System",
+      "tech": ["Python", "Streamlit", "Dash", "Plotly", "React.js"],
+      "description": "AI-driven platform for marine species monitoring and ocean health tracking"
+    }
+  ],
+
+  "certifications": [
+    "IBM AI Engineering Professional Certificate (Nov 2025)",
+    "AI Practitioner: Optimizing AI Solutions - Infosys GenAI Simulation, Forage (2024)",
+    "BCG GenAI Job Simulation - Forage (2024)",
+    "NPTEL - Ethical Hacking (2024)",
+    "Python for Data Science (2023)"
+  ],
+
+  "job_preferences": {
+    "roles": ["AI/ML Engineer", "Data Scientist", "Python Developer", "Software Engineer"],
+    "locations": ["Remote", "Chennai", "Bangalore", "Hyderabad"],
+    "experience_level": "fresher",
+    "job_type": ["Full-time", "Internship"],
+    "notice_period": "Immediate"
+  },
+
+  "languages": ["Tamil (Native)", "English (Professional)", "Hindi (Conversational)"]
+}

@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Database (cloud uses persistent disk or fresh DB)
+data/job_tracker.db
+data/*.db
+
+# Logs
+*.log
+logs/
+
+# Environment secrets — NEVER commit the real .env
+.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+src/__pycache__/
+.cache/

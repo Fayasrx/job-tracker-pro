@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --border: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+  }
+
+  * { box-sizing: border-box; }
+  
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-slate-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-600 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-500; }
+}
+
+@layer components {
+  .card {
+    @apply bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl;
+  }
+
+  .card-elevated {
+    @apply bg-slate-800 border border-slate-700/60 rounded-2xl shadow-xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200 active:scale-95;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-500 text-white shadow-lg shadow-primary-600/25;
+  }
+
+  .btn-secondary {
+    @apply btn bg-slate-700 hover:bg-slate-600 text-slate-100;
+  }
+
+  .btn-ghost {
+    @apply btn hover:bg-slate-700/50 text-slate-300;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-500/30;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-green { @apply badge bg-green-500/15 text-green-400 border border-green-500/20; }
+  .badge-yellow { @apply badge bg-amber-500/15 text-amber-400 border border-amber-500/20; }
+  .badge-orange { @apply badge bg-orange-500/15 text-orange-400 border border-orange-500/20; }
+  .badge-red { @apply badge bg-red-500/15 text-red-400 border border-red-500/20; }
+  .badge-indigo { @apply badge bg-primary-500/15 text-primary-400 border border-primary-500/20; }
+  .badge-slate { @apply badge bg-slate-500/15 text-slate-400 border border-slate-500/20; }
+
+  .input {
+    @apply w-full bg-slate-900/60 border border-slate-700/50 text-slate-100 placeholder-slate-500
+           rounded-xl px-4 py-2.5 text-sm outline-none 
+           focus:border-primary-500/60 focus:ring-2 focus:ring-primary-500/10 transition-all;
+  }
+
+  .select {
+    @apply input appearance-none cursor-pointer;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-100
+           hover:bg-slate-700/40 transition-all duration-150 cursor-pointer text-sm font-medium;
+  }
+
+  .sidebar-link.active {
+    @apply bg-primary-600/20 text-primary-400 border border-primary-500/20;
+  }
+
+  .stat-card {
+    @apply card p-5 flex flex-col gap-2 hover:border-slate-600/60 transition-all;
+  }
+
+  .platform-badge-linkedin { @apply badge bg-blue-600/15 text-blue-400 border border-blue-500/20; }
+  .platform-badge-indeed { @apply badge bg-purple-600/15 text-purple-400 border border-purple-500/20; }
+  .platform-badge-naukri { @apply badge bg-cyan-600/15 text-cyan-400 border border-cyan-500/20; }
+  .platform-badge-glassdoor { @apply badge bg-green-600/15 text-green-400 border border-green-500/20; }
+  .platform-badge-internshala { @apply badge bg-orange-600/15 text-orange-400 border border-orange-500/20; }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-violet-400 bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+  }
+
+  .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
+  .animate-slide-up { animation: slideUp 0.3s ease-out; }
+}
+
+/* Kanban board */
+.kanban-col {
+  @apply flex flex-col gap-3 min-h-[200px];
+}
+
+/* Match score ring */
+.match-ring {
+  @apply relative inline-flex items-center justify-center;
+}
+
+/* Toast override */
+.go2072408551 {
+  @apply !bg-slate-800 !text-slate-100 !border !border-slate-700 !rounded-xl !shadow-2xl;
+}

@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: job-tracker-api
+    runtime: python
+    rootDir: .
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn backend.main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --workers 1 --timeout 120
+    plan: free
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite:////data/job_tracker.db
+      - key: SECRET_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false
+      - key: JOB_ROLES
+        value: AI/ML Engineer,Data Scientist,Python Developer,Software Engineer
+      - key: JOB_LOCATIONS
+        value: Remote,Chennai,Bangalore,Hyderabad
+      - key: EXPERIENCE_LEVEL
+        value: fresher
+      - key: DAILY_SCAN_TIME
+        value: "06:00"
+      - key: DIGEST_TIME
+        value: "09:00"
+      - key: USER_NAME
+        value: Al Mahaboob Phyas A
+      - key: USER_EMAIL
+        value: mahaboobphyas.22ad@kct.ac.in
+    disk:
+      name: job-tracker-data
+      mountPath: /data
+      sizeGB: 1
