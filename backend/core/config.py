@@ -1,5 +1,5 @@
 """
-Backend configuration — extends the existing src/config.py approach.
+Backend configuration â€” extends the existing src/config.py approach.
 Loads all settings from the root .env file.
 """
 
@@ -23,7 +23,13 @@ class BackendConfig:
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", f"sqlite:///{ROOT_DIR}/data/job_tracker.db")
+    @property
+    def DATABASE_URL(self) -> str:
+        url = os.getenv("DATABASE_URL", f"sqlite:///{ROOT_DIR}/data/job_tracker.db")
+        # On Render: if /data not mounted, fall back to project-relative path
+        if url == "sqlite:////data/job_tracker.db":
+            url = f"sqlite:///{ROOT_DIR}/data/job_tracker.db"
+        return url
 
     # Server
     BACKEND_PORT: int = int(os.getenv("BACKEND_PORT", "8000"))
