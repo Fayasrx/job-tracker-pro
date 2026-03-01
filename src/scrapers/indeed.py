@@ -82,7 +82,12 @@ class IndeedScraper(BaseScraper):
                 url = ""
                 if link:
                     href = link.get("href", "")
-                    url = href if href.startswith("http") else f"{self.BASE_URL}{href}"
+                    if href.startswith("http"):
+                        url = href
+                    else:
+                        url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
+                if not url:
+                    url = f"{self.BASE_URL}/jobs?q={quote_plus(title)}+{quote_plus(company)}&l={quote_plus(loc)}"
 
                 job_id = hashlib.md5(f"indeed_{title}_{company}".encode()).hexdigest()[:12]
 

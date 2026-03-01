@@ -77,7 +77,12 @@ class GlassdoorScraper(BaseScraper):
                 url = ""
                 if link:
                     href = link.get("href", "")
-                    url = href if href.startswith("http") else f"{self.BASE_URL}{href}"
+                    if href.startswith("http"):
+                        url = href
+                    elif href:
+                        url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
+                if not url:
+                    url = f"{self.BASE_URL}/Job/jobs.htm?sc.keyword={quote_plus(title)}+{quote_plus(company)}&locKeyword={quote_plus(loc)}"
 
                 job_id = hashlib.md5(f"glassdoor_{title}_{company}".encode()).hexdigest()[:12]
 

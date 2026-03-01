@@ -110,9 +110,12 @@ class LinkedInScraper(BaseScraper):
 
                 # URL
                 link = card.find("a", href=True)
-                url = link["href"] if link else ""
-                if url and not url.startswith("http"):
-                    url = f"{self.BASE_URL}{url}"
+                url = link["href"] if link and link.get("href") else ""
+                if url:
+                    if not url.startswith("http"):
+                        url = f"{self.BASE_URL}{url if url.startswith('/') else '/' + url}"
+                else:
+                    url = f"{self.BASE_URL}/jobs/search/?keywords={quote_plus(title)}+{quote_plus(company)}&location={quote_plus(loc)}"
 
                 # Posted date
                 date_el = card.find("time") or card.find(class_=re.compile(r"job-search-card__listdate"))

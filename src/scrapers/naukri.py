@@ -5,6 +5,7 @@ Naukri.com Jobs scraper using public search API.
 import hashlib
 import re
 from typing import Optional
+from urllib.parse import quote_plus
 
 from bs4 import BeautifulSoup
 
@@ -88,7 +89,15 @@ class NaukriScraper(BaseScraper):
                 url = ""
                 if link:
                     href = link.get("href", "")
-                    url = href if href.startswith("http") else f"{self.BASE_URL}{href}"
+                    if href.startswith("http"):
+                        url = href
+                    elif href:
+                        url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
+                
+                if not url or url == f"{self.BASE_URL}/":
+                    role_slug = quote_plus(title.lower().replace(" ", "-"))
+                    loc_slug = quote_plus(loc.lower().replace(" ", "-"))
+                    url = f"{self.BASE_URL}/{role_slug}-jobs-in-{loc_slug}"
 
                 # Skills
                 skills = []

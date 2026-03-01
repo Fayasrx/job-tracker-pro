@@ -5,6 +5,7 @@ Internshala Jobs & Internships scraper.
 import hashlib
 import re
 from typing import Optional
+from urllib.parse import quote_plus
 
 from bs4 import BeautifulSoup
 
@@ -84,7 +85,13 @@ class InternshalaScraper(BaseScraper):
                 url = ""
                 if link:
                     href = link.get("href", "")
-                    url = href if href.startswith("http") else f"{self.BASE_URL}{href}"
+                    if href.startswith("http"):
+                        url = href
+                    elif href:
+                        url = f"{self.BASE_URL}{href if href.startswith('/') else '/' + href}"
+                if not url:
+                    role_slug = quote_plus(title.lower().replace(" ", "-"))
+                    url = f"{self.BASE_URL}/internships/{role_slug}-internship"
 
                 job_type = "Internship" if listing_type == "internship" else "Full-time"
 
