@@ -28,6 +28,7 @@ from backend.api.routes.companies import router as companies_router
 from backend.api.routes.profile import router as profile_router
 from backend.api.routes.cover_letters import router as cover_letters_router
 from backend.api.routes.analytics import router as analytics_router
+from backend.api.routes.resume import router as resume_router
 
 
 @asynccontextmanager
@@ -70,6 +71,7 @@ app.include_router(companies_router, prefix=API_PREFIX, dependencies=api_depende
 app.include_router(profile_router, prefix=API_PREFIX, dependencies=api_dependencies)
 app.include_router(cover_letters_router, prefix=API_PREFIX, dependencies=api_dependencies)
 app.include_router(analytics_router, prefix=API_PREFIX, dependencies=api_dependencies)
+app.include_router(resume_router, prefix=API_PREFIX, dependencies=api_dependencies)
 
 # WebSocket (no /api prefix)
 app.include_router(ws_router)
